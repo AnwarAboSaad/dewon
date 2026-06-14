@@ -23,8 +23,16 @@
     --radius: 14px;
   }
 
-  html, body { height: 100%; overflow: hidden; }
-  body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
 
   /* ===== LOCK SCREEN ===== */
   #lock-screen {
@@ -36,30 +44,51 @@
   }
   #lock-screen.hidden { display: none; }
   .lock-logo {
-    width: 88px; height: 88px; border-radius: 20px;
-    object-fit: cover; margin-bottom: 14px;
-    box-shadow: 0 8px 32px rgba(249,115,22,.35);
+    width: 88px; height: 88px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 22px; display: flex; align-items: center;
+    justify-content: center; font-size: 44px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 32px rgba(249,115,22,.3);
   }
-  .lock-title { font-size: 26px; font-weight: 900; color: var(--accent); margin-bottom: 4px; }
-  .lock-sub { font-size: 13px; color: var(--text2); margin-bottom: 32px; text-align: center; line-height: 1.6; }
+  .lock-title { font-size: 26px; font-weight: 900; color: var(--accent); margin-bottom: 6px; }
+  .lock-sub {
+    font-size: 13px; color: var(--text2); margin-bottom: 36px;
+    text-align: center; line-height: 1.7; max-width: 300px;
+  }
   .lock-box { width: 100%; max-width: 320px; }
-  .lock-box label { font-size: 12px; color: var(--text2); font-weight: 700; display: block; margin-bottom: 6px; }
+  .lock-box label {
+    display: block; font-size: 12px; color: var(--text2);
+    font-weight: 700; margin-bottom: 6px;
+  }
   .lock-box input {
     width: 100%; background: var(--surface);
     border: 1px solid var(--border); border-radius: 12px;
     padding: 14px 16px; color: var(--text);
     font-family: 'Tajawal', sans-serif; font-size: 16px;
-    text-align: center; letter-spacing: 3px; margin-bottom: 12px;
+    text-align: center; letter-spacing: 2px; margin-bottom: 12px;
     outline: none; transition: border-color .2s;
     -webkit-appearance: none; appearance: none;
   }
   .lock-box input:focus { border-color: var(--accent); }
-  .lock-err { color: var(--red); font-size: 13px; text-align: center; min-height: 20px; margin-bottom: 10px; }
+  .lock-err {
+    color: var(--red); font-size: 13px; text-align: center;
+    min-height: 20px; margin-bottom: 10px; font-weight: 600;
+  }
+  .lock-btn {
+    width: 100%; padding: 14px; border: none; border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white; font-family: 'Tajawal', sans-serif;
+    font-size: 16px; font-weight: 800; cursor: pointer;
+    transition: opacity .2s;
+  }
+  .lock-btn:hover { opacity: .9; }
+  .lock-btn:active { transform: scale(.98); }
 
-  /* expiry warning modal */
+  /* ===== EXPIRY WARNING ===== */
   .expiry-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,.75);
-    z-index: 250; display: flex; align-items: center;
+    z-index: 300; display: flex; align-items: center;
     justify-content: center; padding: 24px;
   }
   .expiry-box {
@@ -67,24 +96,39 @@
     border-radius: 18px; padding: 28px 24px;
     max-width: 320px; width: 100%; text-align: center;
   }
+  .expiry-icon { font-size: 48px; margin-bottom: 12px; }
+  .expiry-title { font-size: 18px; font-weight: 900; color: var(--red); margin-bottom: 10px; }
+  .expiry-days { font-size: 42px; font-weight: 900; color: var(--accent); margin: 8px 0; }
+  .expiry-text { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
 
-  /* ===== APP ===== */
+  /* ===== MAIN APP ===== */
   header {
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    padding: 14px 20px; display: flex; align-items: center;
-    justify-content: space-between; height: 68px; flex-shrink: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    flex-shrink: 0;
   }
 
   main {
-    height: calc(100vh - 68px); overflow-y: auto;
-    padding: 16px; max-width: 700px; margin: 0 auto; width: 100%;
+    height: calc(100vh - 68px);
+    overflow-y: auto;
+    padding: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon {
     width: 40px; height: 40px;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
   }
   .logo-text { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.2; }
   .logo-sub { font-size: 11px; color: var(--text2); font-weight: 400; }
@@ -111,11 +155,17 @@
   .btn-icon.del:hover { color: var(--red); }
   .btn-icon.edit:hover { color: var(--accent); }
 
-  .customers-table { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+  .customers-table {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
   .table-header {
     display: grid; grid-template-columns: 1fr 1fr 1fr 50px;
     padding: 12px 16px; background: var(--surface2);
-    font-size: 13px; color: var(--text2); font-weight: 700; border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--text2); font-weight: 700;
+    border-bottom: 1px solid var(--border);
   }
   .table-row {
     display: grid; grid-template-columns: 1fr 1fr 1fr 50px;
@@ -140,23 +190,33 @@
     display: inline-flex; align-items: center; gap: 8px;
     color: var(--text2); font-size: 13px; font-weight: 700;
     background: var(--surface); border: 1px solid var(--border);
-    cursor: pointer; margin-bottom: 16px; padding: 8px 16px 8px 12px;
-    border-radius: 50px; font-family: 'Tajawal', sans-serif; transition: all 0.2s;
+    cursor: pointer; margin-bottom: 16px;
+    padding: 8px 16px 8px 12px;
+    border-radius: 50px;
+    font-family: 'Tajawal', sans-serif;
+    transition: all 0.2s;
   }
   .back-btn:hover { color: var(--accent); border-color: var(--accent); background: rgba(249,115,22,0.07); }
 
-  .customer-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 12px; }
+  .customer-header {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 12px;
+  }
   .customer-header h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
   .customer-header .phone { color: var(--text2); font-size: 14px; display: flex; align-items: center; gap: 6px; }
 
   .action-buttons { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
   .action-buttons .btn { justify-content: center; padding: 12px 10px; font-size: 13px; }
 
-  .trans-table { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 12px; }
+  .trans-table {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden; margin-bottom: 12px;
+  }
   .trans-header {
     display: grid; grid-template-columns: 80px 1fr 1fr auto;
     padding: 12px 16px; background: var(--surface2);
-    font-size: 13px; color: var(--text2); font-weight: 700; border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--text2); font-weight: 700;
+    border-bottom: 1px solid var(--border);
   }
   .trans-row {
     display: grid; grid-template-columns: 80px 1fr 1fr auto;
@@ -168,43 +228,75 @@
   .trans-row.debt-row .amount { color: #f87171; font-weight: 700; }
   .trans-row.payment-row .amount { color: var(--green); font-weight: 700; }
   .trans-date { font-size: 12px; color: var(--text2); }
-  .invoice-num { font-size: 12px; font-weight: 700; color: var(--accent); background: rgba(249,115,22,0.1); padding: 2px 7px; border-radius: 6px; display: inline-block; }
-  .type-tag { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; }
+  .invoice-num {
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    background: rgba(249,115,22,0.1);
+    padding: 2px 7px; border-radius: 6px; display: inline-block;
+  }
+  .type-tag {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px;
+  }
   .type-debt { background: rgba(239,68,68,0.15); color: #f87171; }
   .type-payment { background: rgba(34,197,94,0.15); color: var(--green); }
   .trans-actions { display: flex; gap: 2px; }
 
-  .total-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .total-bar {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
   .total-label { font-size: 15px; font-weight: 700; color: var(--text2); }
   .total-amount { font-size: 22px; font-weight: 900; }
   .total-positive { color: #f87171; }
   .total-zero { color: var(--green); }
 
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    z-index: 200; display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
   .modal-overlay.active { opacity: 1; pointer-events: all; }
-  .modal { background: var(--surface); border-radius: 20px 20px 0 0; border: 1px solid var(--border); border-bottom: none; padding: 24px 20px 40px; width: 100%; max-width: 700px; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1); }
+  .modal {
+    background: var(--surface); border-radius: 20px 20px 0 0;
+    border: 1px solid var(--border); border-bottom: none;
+    padding: 24px 20px 40px; width: 100%; max-width: 700px;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  }
   .modal-overlay.active .modal { transform: translateY(0); }
   .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
   .modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 20px; }
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 8px; }
-  .form-group input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-family: 'Tajawal', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; direction: rtl; }
+  .form-group input {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    font-family: 'Tajawal', sans-serif; font-size: 15px; color: var(--text);
+    outline: none; transition: border-color 0.2s; direction: rtl;
+  }
   .form-group input:focus { border-color: var(--accent); }
   .modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
   .modal-buttons .btn { justify-content: center; padding: 13px; }
 
-  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; font-size: 14px; font-weight: 600; z-index: 300; opacity: 0; transition: all 0.3s; white-space: nowrap; }
+  .toast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; z-index: 300;
+    opacity: 0; transition: all 0.3s; white-space: nowrap;
+  }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- ===== LOCK SCREEN ===== -->
 <div id="lock-screen">
-  <img class="lock-logo" src="logo.png"
-    onerror="this.style.display='none';document.getElementById('lock-emoji').style.display='block'">
-  <div id="lock-emoji" style="font-size:56px;margin-bottom:14px;display:none">🏍️</div>
-  <div class="lock-sub" id="lock-sub">إدارة الديون</div>
+  <div class="lock-logo">🏍️</div>
+  <div class="lock-title">حسان حميدي</div>
+  <div class="lock-sub" id="lock-sub">أدخل كود التفعيل للدخول</div>
   <div class="lock-box" id="lock-box"></div>
 </div>
 
@@ -230,7 +322,10 @@
   <div id="page-customers">
     <div class="customers-table">
       <div class="table-header">
-        <div>الاسم</div><div>الهاتف</div><div>الدين</div><div></div>
+        <div>الاسم</div>
+        <div>الهاتف</div>
+        <div>الدين</div>
+        <div></div>
       </div>
       <div id="customers-list"></div>
     </div>
@@ -252,7 +347,10 @@
     </div>
     <div class="trans-table">
       <div class="trans-header">
-        <div>فاتورة</div><div>التاريخ</div><div>المبلغ</div><div></div>
+        <div>فاتورة</div>
+        <div>التاريخ</div>
+        <div>المبلغ</div>
+        <div></div>
       </div>
       <div id="trans-list"></div>
     </div>
@@ -268,8 +366,14 @@
   <div class="modal">
     <div class="modal-handle"></div>
     <h3 id="modal-customer-title">إضافة زبون</h3>
-    <div class="form-group"><label>اسم الزبون</label><input type="text" id="input-name" placeholder="مثال: أحمد محمد"></div>
-    <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="input-phone" placeholder="مثال: 0791234567"></div>
+    <div class="form-group">
+      <label>اسم الزبون</label>
+      <input type="text" id="input-name" placeholder="مثال: أحمد محمد">
+    </div>
+    <div class="form-group">
+      <label>رقم الهاتف</label>
+      <input type="tel" id="input-phone" placeholder="مثال: 0791234567">
+    </div>
     <div class="modal-buttons">
       <button class="btn btn-ghost" onclick="closeModal('modal-customer')">إلغاء</button>
       <button class="btn btn-primary" onclick="saveCustomer()">حفظ</button>
@@ -282,9 +386,18 @@
   <div class="modal">
     <div class="modal-handle"></div>
     <h3>إضافة دين</h3>
-    <div class="form-group"><label>رقم الفاتورة</label><input type="text" id="input-debt-invoice" placeholder="مثال: 1042"></div>
-    <div class="form-group"><label>المبلغ</label><input type="number" id="input-debt" placeholder="مثال: 50"></div>
-    <div class="form-group"><label>التاريخ</label><input type="date" id="input-debt-date"></div>
+    <div class="form-group">
+      <label>رقم الفاتورة</label>
+      <input type="text" id="input-debt-invoice" placeholder="مثال: 1042">
+    </div>
+    <div class="form-group">
+      <label>المبلغ</label>
+      <input type="number" id="input-debt" placeholder="مثال: 50">
+    </div>
+    <div class="form-group">
+      <label>التاريخ</label>
+      <input type="date" id="input-debt-date">
+    </div>
     <div class="modal-buttons">
       <button class="btn btn-ghost" onclick="closeModal('modal-debt')">إلغاء</button>
       <button class="btn btn-red" onclick="saveDebt()">إضافة</button>
@@ -297,8 +410,14 @@
   <div class="modal">
     <div class="modal-handle"></div>
     <h3>إضافة دفعة</h3>
-    <div class="form-group"><label>المبلغ المدفوع</label><input type="number" id="input-payment" placeholder="مثال: 20"></div>
-    <div class="form-group"><label>التاريخ</label><input type="date" id="input-payment-date"></div>
+    <div class="form-group">
+      <label>المبلغ المدفوع</label>
+      <input type="number" id="input-payment" placeholder="مثال: 20">
+    </div>
+    <div class="form-group">
+      <label>التاريخ</label>
+      <input type="date" id="input-payment-date">
+    </div>
     <div class="modal-buttons">
       <button class="btn btn-ghost" onclick="closeModal('modal-payment')">إلغاء</button>
       <button class="btn btn-green" onclick="savePayment()">إضافة</button>
@@ -311,9 +430,18 @@
   <div class="modal">
     <div class="modal-handle"></div>
     <h3>تعديل</h3>
-    <div class="form-group" id="edit-invoice-group"><label>رقم الفاتورة</label><input type="text" id="input-edit-invoice" placeholder="رقم الفاتورة"></div>
-    <div class="form-group"><label>المبلغ</label><input type="number" id="input-edit-amount" placeholder="المبلغ"></div>
-    <div class="form-group"><label>التاريخ</label><input type="date" id="input-edit-date"></div>
+    <div class="form-group" id="edit-invoice-group">
+      <label>رقم الفاتورة</label>
+      <input type="text" id="input-edit-invoice" placeholder="رقم الفاتورة">
+    </div>
+    <div class="form-group">
+      <label>المبلغ</label>
+      <input type="number" id="input-edit-amount" placeholder="المبلغ">
+    </div>
+    <div class="form-group">
+      <label>التاريخ</label>
+      <input type="date" id="input-edit-date">
+    </div>
     <div class="modal-buttons">
       <button class="btn btn-ghost" onclick="closeModal('modal-edit')">إلغاء</button>
       <button class="btn btn-primary" onclick="saveEdit()">حفظ</button>
@@ -325,100 +453,84 @@
 
 <script>
 // ═══ LOCK SYSTEM ═══
-// ⚙️ غيّر هذه القيم حسب الحاجة:
-const PASS_HASH   = '298c0ccef78f8a6d39cb76da145886c8784ba183208ac8caf226b6a2d26b547d';
-const ACTIV_HASH  = '298c0ccef78f8a6d39cb76da145886c8784ba183208ac8caf226b6a2d26b547d';
+const ACTIV_HASH  = 'c9098380383253439c21544ae611a4c782a0fff6da9a619abd513c5a2de40608';
 const EXPIRY_DAYS = 365;
 const WARN_DAYS   = 30;
 
-async function sha256(msg){
+async function sha256(msg) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
-function getActivation(){ try{ return JSON.parse(localStorage.getItem('_mg_actv')); }catch{ return null; } }
-function saveActivation(){ localStorage.setItem('_mg_actv', JSON.stringify({date: Date.now()})); }
-function daysLeft(){
-  const a = getActivation(); if(!a) return -1;
-  return EXPIRY_DAYS - Math.floor((Date.now() - a.date) / (1000*60*60*24));
+function getActivation() {
+  try { return JSON.parse(localStorage.getItem('_mgdbt_actv')); } catch { return null; }
+}
+function saveActivation() {
+  localStorage.setItem('_mgdbt_actv', JSON.stringify({ date: Date.now() }));
+}
+function daysLeft() {
+  const a = getActivation();
+  if (!a) return -1;
+  return EXPIRY_DAYS - Math.floor((Date.now() - a.date) / (1000 * 60 * 60 * 24));
 }
 
-function renderLockActivate(msg){
-  document.getElementById('lock-sub').textContent = msg || 'جهاز جديد — أدخل كود التفعيل وكلمة المرور';
+function renderLockActivate(msg) {
+  document.getElementById('lock-sub').textContent = msg || 'أدخل كود التفعيل للدخول';
   document.getElementById('lock-box').innerHTML = `
     <label>كود التفعيل</label>
-    <input type="text" id="lock-acode" placeholder="كود التفعيل" onkeydown="if(event.key==='Enter')document.getElementById('lock-apass').focus()">
-    <label style="margin-top:4px">كلمة المرور</label>
-    <input type="password" id="lock-apass" placeholder="••••••" onkeydown="if(event.key==='Enter')doActivate()">
+    <input type="text" id="lock-acode" placeholder="كود التفعيل" autocomplete="off"
+      onkeydown="if(event.key==='Enter') doActivate()">
     <div class="lock-err" id="lock-err"></div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px" onclick="doActivate()">✅ تفعيل الجهاز</button>
+    <button class="lock-btn" onclick="doActivate()">✅ دخول</button>
   `;
-}
-function renderLockLogin(){
-  document.getElementById('lock-sub').textContent = 'أدخل كلمة المرور للدخول';
-  document.getElementById('lock-box').innerHTML = `
-    <label>كلمة المرور</label>
-    <input type="password" id="lock-pass" placeholder="••••••" onkeydown="if(event.key==='Enter')doLogin()">
-    <div class="lock-err" id="lock-err"></div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px" onclick="doLogin()">🔓 دخول</button>
-  `;
-  setTimeout(()=>{ const el=document.getElementById('lock-pass'); if(el) el.focus(); },100);
+  setTimeout(() => { const el = document.getElementById('lock-acode'); if(el) el.focus(); }, 200);
 }
 
-async function doLogin(){
-  const pass = document.getElementById('lock-pass').value;
+async function doActivate() {
+  const code = (document.getElementById('lock-acode') || {}).value || '';
   const err  = document.getElementById('lock-err');
-  if(!pass){ err.textContent='أدخل كلمة المرور'; return; }
-  const h = await sha256(pass);
-  if(h === PASS_HASH){ err.textContent=''; unlockApp(); }
-  else{ err.textContent='❌ كلمة المرور غير صحيحة'; document.getElementById('lock-pass').value=''; }
-}
-async function doActivate(){
-  const code = (document.getElementById('lock-acode')||{}).value||'';
-  const pass = (document.getElementById('lock-apass')||{}).value||'';
-  const err  = document.getElementById('lock-err');
-  if(!code||!pass){ err.textContent='أدخل الكود وكلمة المرور'; return; }
+  if (!code) { err.textContent = 'أدخل كود التفعيل'; return; }
   const ch = await sha256(code.trim());
-  const ph = await sha256(pass);
-  if(ch === ACTIV_HASH && ph === PASS_HASH){
-    saveActivation(); err.textContent=''; unlockApp();
+  if (ch === ACTIV_HASH) {
+    saveActivation();
+    err.textContent = '';
+    unlockApp();
   } else {
-    err.textContent='❌ الكود أو كلمة المرور غير صحيحة';
-    document.getElementById('lock-acode').value='';
-    document.getElementById('lock-apass').value='';
+    err.textContent = '❌ الكود غير صحيح';
+    document.getElementById('lock-acode').value = '';
   }
 }
-function unlockApp(){
+
+function unlockApp() {
   document.getElementById('lock-screen').classList.add('hidden');
   const left = daysLeft();
-  if(left > 0 && left <= WARN_DAYS) setTimeout(()=>showExpiryWarning(left), 800);
+  if (left > 0 && left <= WARN_DAYS) setTimeout(() => showExpiryWarning(left), 800);
 }
-function showExpiryWarning(days){
-  const overlay = document.createElement('div');
-  overlay.className = 'expiry-overlay';
-  overlay.innerHTML = `
+
+function showExpiryWarning(days) {
+  const div = document.createElement('div');
+  div.className = 'expiry-overlay';
+  div.innerHTML = `
     <div class="expiry-box">
-      <div style="font-size:44px;margin-bottom:10px">⚠️</div>
-      <div style="font-size:17px;font-weight:900;color:var(--red);margin-bottom:8px">تنبيه انتهاء الترخيص</div>
-      <div style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:20px">
-        باقي على انتهاء الترخيص<br>
-        <strong style="font-size:28px;color:var(--accent)">${days}</strong> يوم<br>
-        تواصل مع المورد لتجديد التفعيل.
-      </div>
-      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px"
-        onclick="this.closest('.expiry-overlay').remove()">حسناً، فهمت</button>
+      <div class="expiry-icon">⚠️</div>
+      <div class="expiry-title">تنبيه انتهاء الترخيص</div>
+      <div class="expiry-days">${days}</div>
+      <div class="expiry-text">باقي على انتهاء الترخيص<br><strong>يوم</strong><br>تواصل مع المورد لتجديد التفعيل.</div>
+      <button class="lock-btn" onclick="this.closest('.expiry-overlay').remove()">حسناً، فهمت</button>
     </div>`;
-  document.body.appendChild(overlay);
+  document.body.appendChild(div);
 }
-function initLock(){
+
+function initLock() {
   const left = daysLeft();
-  if(left < 0){
-    renderLockActivate('جهاز جديد — أدخل كود التفعيل وكلمة المرور');
-  } else if(left === 0){
-    localStorage.removeItem('_mg_actv');
+  if (left < 0) {
+    renderLockActivate('أدخل كود التفعيل للدخول');
+  } else if (left === 0) {
+    localStorage.removeItem('_mgdbt_actv');
     renderLockActivate('⚠️ انتهى الترخيص — أدخل كود التفعيل الجديد');
   } else {
-    // مفعّل — يطلب كلمة مرور فقط
-    renderLockLogin();
+    // مفعّل وصالح — دخول مباشر
+    document.getElementById('lock-screen').classList.add('hidden');
+    if (left <= WARN_DAYS) setTimeout(() => showExpiryWarning(left), 800);
   }
 }
 
@@ -428,35 +540,37 @@ let currentCustomerId = null;
 let editingTransId = null;
 let editingCustomerId = null;
 
-function save(){ localStorage.setItem('mg_debt_app', JSON.stringify(data)); }
-function genId(){ return Date.now().toString(36) + Math.random().toString(36).slice(2); }
-function today(){ return new Date().toISOString().split('T')[0]; }
-function formatDate(d){
-  if(!d) return '';
-  const [y,m,day] = d.split('-');
+function save() { localStorage.setItem('mg_debt_app', JSON.stringify(data)); }
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+function today() { return new Date().toISOString().split('T')[0]; }
+function formatDate(d) {
+  if (!d) return '';
+  const [y, m, day] = d.split('-');
   return `${day}/${m}/${y}`;
 }
-function showToast(msg){
+function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2500);
-}
-function getTotal(customerId){
-  const c = data.customers.find(x=>x.id===customerId); if(!c) return 0;
-  return (c.transactions||[]).reduce((sum,t)=>t.type==='debt'?sum+t.amount:sum-t.amount, 0);
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-// ═══ CUSTOMERS ═══
-function renderCustomers(){
+function getTotal(customerId) {
+  const c = data.customers.find(x => x.id === customerId);
+  if (!c) return 0;
+  return (c.transactions || []).reduce((sum, t) => t.type === 'debt' ? sum + t.amount : sum - t.amount, 0);
+}
+
+function renderCustomers() {
   const list = document.getElementById('customers-list');
-  if(!data.customers.length){
-    list.innerHTML=`<div class="empty-state"><div class="icon">🏍️</div><p>لا يوجد زبائن بعد</p></div>`;
+  if (!data.customers.length) {
+    list.innerHTML = `<div class="empty-state"><div class="icon">🏍️</div><p>لا يوجد زبائن بعد</p></div>`;
     return;
   }
-  list.innerHTML = data.customers.map(c=>{
+  list.innerHTML = data.customers.map(c => {
     const total = getTotal(c.id);
-    const cls = total>0?'debt-positive':'debt-zero';
-    const label = total>0?`${total}`:'مسوّى';
+    const cls = total > 0 ? 'debt-positive' : 'debt-zero';
+    const label = total > 0 ? `${total}` : 'مسوّى';
     return `
       <div class="table-row" onclick="openCustomer('${c.id}')">
         <div class="customer-name-cell">${c.name}</div>
@@ -469,73 +583,85 @@ function renderCustomers(){
   }).join('');
 }
 
-function openAddCustomer(){
+function openAddCustomer() {
   editingCustomerId = null;
-  document.getElementById('modal-customer-title').textContent='إضافة زبون';
-  document.getElementById('input-name').value='';
-  document.getElementById('input-phone').value='';
+  document.getElementById('modal-customer-title').textContent = 'إضافة زبون';
+  document.getElementById('input-name').value = '';
+  document.getElementById('input-phone').value = '';
   openModal('modal-customer');
-  setTimeout(()=>document.getElementById('input-name').focus(), 350);
+  setTimeout(() => document.getElementById('input-name').focus(), 350);
 }
-function saveCustomer(){
+
+function saveCustomer() {
   const name = document.getElementById('input-name').value.trim();
   const phone = document.getElementById('input-phone').value.trim();
-  if(!name){ showToast('⚠️ أدخل اسم الزبون'); return; }
-  if(editingCustomerId){
-    const c = data.customers.find(x=>x.id===editingCustomerId);
-    c.name=name; c.phone=phone;
-    if(currentCustomerId===editingCustomerId){
-      document.getElementById('detail-name').textContent=name;
-      document.getElementById('detail-phone').textContent=phone;
+  if (!name) { showToast('⚠️ أدخل اسم الزبون'); return; }
+  if (editingCustomerId) {
+    const c = data.customers.find(x => x.id === editingCustomerId);
+    c.name = name; c.phone = phone;
+    if (currentCustomerId === editingCustomerId) {
+      document.getElementById('detail-name').textContent = name;
+      document.getElementById('detail-phone').textContent = phone;
     }
-    editingCustomerId=null; showToast('✅ تم التعديل');
+    editingCustomerId = null;
+    showToast('✅ تم التعديل');
   } else {
-    data.customers.push({id:genId(),name,phone,transactions:[]});
+    data.customers.push({ id: genId(), name, phone, transactions: [] });
     showToast('✅ تمت الإضافة');
   }
   save(); closeModal('modal-customer'); renderCustomers();
 }
-function deleteCustomer(id){
-  if(!confirm('حذف هذا الزبون وكل ديونه؟')) return;
-  data.customers = data.customers.filter(c=>c.id!==id);
-  save(); renderCustomers(); showToast('🗑️ تم الحذف');
+
+function deleteCustomer(id) {
+  if (!confirm('حذف هذا الزبون وكل ديونه؟')) return;
+  data.customers = data.customers.filter(c => c.id !== id);
+  save(); renderCustomers();
+  showToast('🗑️ تم الحذف');
 }
 
-// ═══ CUSTOMER DETAIL ═══
-function openCustomer(id){
-  currentCustomerId=id;
-  const c=data.customers.find(x=>x.id===id);
-  document.getElementById('detail-name').textContent=c.name;
-  document.getElementById('detail-phone').textContent=c.phone;
-  document.getElementById('page-customers').style.display='none';
-  document.getElementById('page-customer').style.display='block';
-  document.getElementById('btn-add-customer').style.display='none';
+function openCustomer(id) {
+  currentCustomerId = id;
+  const c = data.customers.find(x => x.id === id);
+  document.getElementById('detail-name').textContent = c.name;
+  document.getElementById('detail-phone').textContent = c.phone;
+  document.getElementById('page-customers').style.display = 'none';
+  document.getElementById('page-customer').style.display = 'block';
+  document.getElementById('btn-add-customer').style.display = 'none';
   renderTransactions();
 }
-function goBack(){
-  currentCustomerId=null;
-  document.getElementById('page-customer').style.display='none';
-  document.getElementById('page-customers').style.display='block';
-  document.getElementById('btn-add-customer').style.display='flex';
+
+function goBack() {
+  currentCustomerId = null;
+  document.getElementById('page-customer').style.display = 'none';
+  document.getElementById('page-customers').style.display = 'block';
+  document.getElementById('btn-add-customer').style.display = 'flex';
   renderCustomers();
 }
-function renderTransactions(){
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  const list=document.getElementById('trans-list');
-  const txs=c.transactions||[];
-  if(!txs.length){
-    list.innerHTML=`<div class="empty-state"><div class="icon">📋</div><p>لا توجد حركات بعد</p></div>`;
+
+function renderTransactions() {
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  const list = document.getElementById('trans-list');
+  const txs = c.transactions || [];
+  if (!txs.length) {
+    list.innerHTML = `<div class="empty-state"><div class="icon">📋</div><p>لا توجد حركات بعد</p></div>`;
   } else {
-    list.innerHTML=[...txs].reverse().map(t=>{
-      const isDebt=t.type==='debt';
-      const sign=isDebt?'+':'-';
-      const cls=isDebt?'debt-row':'payment-row';
-      const tag=isDebt?`<span class="type-tag type-debt">دين</span>`:`<span class="type-tag type-payment">دفعة</span>`;
-      const invLabel=t.invoice?`<span class="invoice-num">#${t.invoice}</span>`:`<span style="color:var(--text2);font-size:12px">—</span>`;
+    list.innerHTML = [...txs].reverse().map(t => {
+      const isDebt = t.type === 'debt';
+      const sign = isDebt ? '+' : '-';
+      const cls = isDebt ? 'debt-row' : 'payment-row';
+      const tag = isDebt
+        ? `<span class="type-tag type-debt">دين</span>`
+        : `<span class="type-tag type-payment">دفعة</span>`;
+      const invLabel = t.invoice
+        ? `<span class="invoice-num">#${t.invoice}</span>`
+        : `<span style="color:var(--text2);font-size:12px">—</span>`;
       return `
         <div class="trans-row ${cls}">
           <div>${invLabel}</div>
-          <div><div class="trans-date">${formatDate(t.date)}</div><div style="margin-top:2px">${tag}</div></div>
+          <div>
+            <div class="trans-date">${formatDate(t.date)}</div>
+            <div style="margin-top:2px">${tag}</div>
+          </div>
           <div class="amount" style="font-weight:700;font-size:15px">${sign}${t.amount}</div>
           <div class="trans-actions">
             <button class="btn-icon edit" onclick="openEditTrans('${t.id}')">✏️</button>
@@ -544,142 +670,171 @@ function renderTransactions(){
         </div>`;
     }).join('');
   }
-  const total=getTotal(currentCustomerId);
-  const el=document.getElementById('total-amount');
-  el.textContent=`${total}`;
-  el.className='total-amount '+(total>0?'total-positive':'total-zero');
+  const total = getTotal(currentCustomerId);
+  const el = document.getElementById('total-amount');
+  el.textContent = `${total}`;
+  el.className = 'total-amount ' + (total > 0 ? 'total-positive' : 'total-zero');
 }
 
-// ═══ ADD DEBT ═══
-function openAddDebt(){
-  document.getElementById('input-debt-invoice').value='';
-  document.getElementById('input-debt').value='';
-  document.getElementById('input-debt-date').value=today();
+function openAddDebt() {
+  document.getElementById('input-debt-invoice').value = '';
+  document.getElementById('input-debt').value = '';
+  document.getElementById('input-debt-date').value = today();
   openModal('modal-debt');
-  setTimeout(()=>document.getElementById('input-debt-invoice').focus(),350);
-}
-function saveDebt(){
-  const invoice=document.getElementById('input-debt-invoice').value.trim();
-  const amount=parseFloat(document.getElementById('input-debt').value);
-  const date=document.getElementById('input-debt-date').value;
-  if(!invoice){showToast('⚠️ أدخل رقم الفاتورة');return;}
-  if(!amount||amount<=0){showToast('⚠️ أدخل مبلغ صحيح');return;}
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  c.transactions.push({id:genId(),type:'debt',invoice,amount,date});
-  save(); closeModal('modal-debt'); renderTransactions(); showToast('✅ تمت إضافة الدين');
+  setTimeout(() => document.getElementById('input-debt-invoice').focus(), 350);
 }
 
-// ═══ ADD PAYMENT ═══
-function openAddPayment(){
-  document.getElementById('input-payment').value='';
-  document.getElementById('input-payment-date').value=today();
+function saveDebt() {
+  const invoice = document.getElementById('input-debt-invoice').value.trim();
+  const amount = parseFloat(document.getElementById('input-debt').value);
+  const date = document.getElementById('input-debt-date').value;
+  if (!invoice) { showToast('⚠️ أدخل رقم الفاتورة'); return; }
+  if (!amount || amount <= 0) { showToast('⚠️ أدخل مبلغ صحيح'); return; }
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  c.transactions.push({ id: genId(), type: 'debt', invoice, amount, date });
+  save(); closeModal('modal-debt'); renderTransactions();
+  showToast('✅ تمت إضافة الدين');
+}
+
+function openAddPayment() {
+  document.getElementById('input-payment').value = '';
+  document.getElementById('input-payment-date').value = today();
   openModal('modal-payment');
-  setTimeout(()=>document.getElementById('input-payment').focus(),350);
-}
-function savePayment(){
-  const amount=parseFloat(document.getElementById('input-payment').value);
-  const date=document.getElementById('input-payment-date').value;
-  if(!amount||amount<=0){showToast('⚠️ أدخل مبلغ صحيح');return;}
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  c.transactions.push({id:genId(),type:'payment',amount,date});
-  save(); closeModal('modal-payment'); renderTransactions(); showToast('✅ تمت إضافة الدفعة');
+  setTimeout(() => document.getElementById('input-payment').focus(), 350);
 }
 
-// ═══ EDIT / DELETE ═══
-function openEditTrans(id){
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  const t=c.transactions.find(x=>x.id===id);
-  editingTransId=id;
-  const invoiceGroup=document.getElementById('edit-invoice-group');
-  if(t.type==='debt'){ invoiceGroup.style.display='block'; document.getElementById('input-edit-invoice').value=t.invoice||''; }
-  else { invoiceGroup.style.display='none'; document.getElementById('input-edit-invoice').value=''; }
-  document.getElementById('input-edit-amount').value=t.amount;
-  document.getElementById('input-edit-date').value=t.date;
+function savePayment() {
+  const amount = parseFloat(document.getElementById('input-payment').value);
+  const date = document.getElementById('input-payment-date').value;
+  if (!amount || amount <= 0) { showToast('⚠️ أدخل مبلغ صحيح'); return; }
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  c.transactions.push({ id: genId(), type: 'payment', amount, date });
+  save(); closeModal('modal-payment'); renderTransactions();
+  showToast('✅ تمت إضافة الدفعة');
+}
+
+function openEditTrans(id) {
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  const t = c.transactions.find(x => x.id === id);
+  editingTransId = id;
+  const invoiceGroup = document.getElementById('edit-invoice-group');
+  if (t.type === 'debt') {
+    invoiceGroup.style.display = 'block';
+    document.getElementById('input-edit-invoice').value = t.invoice || '';
+  } else {
+    invoiceGroup.style.display = 'none';
+    document.getElementById('input-edit-invoice').value = '';
+  }
+  document.getElementById('input-edit-amount').value = t.amount;
+  document.getElementById('input-edit-date').value = t.date;
   openModal('modal-edit');
 }
-function saveEdit(){
-  const invoice=document.getElementById('input-edit-invoice').value.trim();
-  const amount=parseFloat(document.getElementById('input-edit-amount').value);
-  const date=document.getElementById('input-edit-date').value;
-  if(!amount||amount<=0){showToast('⚠️ أدخل مبلغ صحيح');return;}
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  const t=c.transactions.find(x=>x.id===editingTransId);
-  if(t.type==='debt'&&!invoice){showToast('⚠️ أدخل رقم الفاتورة');return;}
-  if(t.type==='debt') t.invoice=invoice;
-  t.amount=amount; t.date=date;
-  editingTransId=null;
-  save(); closeModal('modal-edit'); renderTransactions(); showToast('✅ تم التعديل');
-}
-function deleteTrans(id){
-  if(!confirm('حذف هذه الحركة؟')) return;
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  c.transactions=c.transactions.filter(x=>x.id!==id);
-  save(); renderTransactions(); showToast('🗑️ تم الحذف');
+
+function saveEdit() {
+  const invoice = document.getElementById('input-edit-invoice').value.trim();
+  const amount = parseFloat(document.getElementById('input-edit-amount').value);
+  const date = document.getElementById('input-edit-date').value;
+  if (!amount || amount <= 0) { showToast('⚠️ أدخل مبلغ صحيح'); return; }
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  const t = c.transactions.find(x => x.id === editingTransId);
+  if (t.type === 'debt' && !invoice) { showToast('⚠️ أدخل رقم الفاتورة'); return; }
+  if (t.type === 'debt') t.invoice = invoice;
+  t.amount = amount; t.date = date;
+  editingTransId = null;
+  save(); closeModal('modal-edit'); renderTransactions();
+  showToast('✅ تم التعديل');
 }
 
-// ═══ WHATSAPP ═══
-function openEditCustomer(){
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  editingCustomerId=currentCustomerId;
-  document.getElementById('modal-customer-title').textContent='تعديل بيانات الزبون';
-  document.getElementById('input-name').value=c.name;
-  document.getElementById('input-phone').value=c.phone;
-  openModal('modal-customer');
-  setTimeout(()=>document.getElementById('input-name').focus(),350);
+function deleteTrans(id) {
+  if (!confirm('حذف هذه الحركة؟')) return;
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  c.transactions = c.transactions.filter(x => x.id !== id);
+  save(); renderTransactions();
+  showToast('🗑️ تم الحذف');
 }
-function sendWhatsApp(){
-  const c=data.customers.find(x=>x.id===currentCustomerId);
-  const txs=c.transactions||[];
-  const total=getTotal(currentCustomerId);
-  if(total<=0){
-    const phone2=c.phone.replace(/\D/g,'');
-    const msg2=total===0?'مرحبا\nصار حسابك 0 ✅':`مرحبا\nعندك رصيد لديك ${Math.abs(total)} ✅`;
-    window.open(`https://wa.me/${phone2}?text=${encodeURIComponent(msg2)}`,'_blank');
+
+function openEditCustomer() {
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  editingCustomerId = currentCustomerId;
+  document.getElementById('modal-customer-title').textContent = 'تعديل بيانات الزبون';
+  document.getElementById('input-name').value = c.name;
+  document.getElementById('input-phone').value = c.phone;
+  openModal('modal-customer');
+  setTimeout(() => document.getElementById('input-name').focus(), 350);
+}
+
+function sendWhatsApp() {
+  const c = data.customers.find(x => x.id === currentCustomerId);
+  const txs = c.transactions || [];
+  const total = getTotal(currentCustomerId);
+  if (total <= 0) {
+    const phone2 = c.phone.replace(/\D/g, '');
+    const msg2 = total === 0
+      ? 'مرحبا\nصار حسابك 0 ✅'
+      : `مرحبا\nعندك رصيد لديك ${Math.abs(total)} ✅`;
+    window.open(`https://wa.me/${phone2}?text=${encodeURIComponent(msg2)}`, '_blank');
     return;
   }
-  function pad(str,len){ str=String(str); while(str.length<len) str=str+' '; return str; }
-  const last10=[...txs].slice(-10).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const lines=last10.map(t=>{
-    const date=pad(formatDate(t.date),11);
-    const amount=pad(t.amount,10);
-    const type=pad(t.type==='debt'?'فاتورة':'دفعة',10);
-    const invoice=t.type==='debt'?pad(t.invoice,10):pad('',10);
+  const last10 = txs.slice(-10).sort((a, b) => new Date(a.date) - new Date(b.date));
+  function pad(str, len) { str = String(str); while (str.length < len) str = str + ' '; return str; }
+  const lines = last10.map(t => {
+    const date = pad(formatDate(t.date), 11);
+    const amount = pad(t.amount, 10);
+    const type = pad(t.type === 'debt' ? 'فاتورة' : 'دفعة', 10);
+    const invoice = t.type === 'debt' ? pad(t.invoice, 10) : pad('', 10);
     return `${date}| ${amount}| ${type}| ${invoice}`;
   }).join('\n');
-  const msg=`مرحبا\n\n${lines}\n\nالمتبقي: ${total}`;
-  const phone=c.phone.replace(/\D/g,'');
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
+  const msg = `مرحبا\n\n${lines}\n\nالمتبقي: ${total}`;
+  const phone = c.phone.replace(/\D/g, '');
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// ═══ EXPORT / IMPORT ═══
-function exportData(){
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download='mazen-backup-'+today()+'.json'; a.click();
-  URL.revokeObjectURL(url); showToast('✅ تم حفظ النسخة الاحتياطية');
+function exportData() {
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'mazen-backup-' + today() + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ تم حفظ النسخة الاحتياطية');
 }
-function importData(event){
-  const file=event.target.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    try{
-      const imported=JSON.parse(e.target.result);
-      if(!imported.customers){showToast('⚠️ ملف غير صحيح');return;}
-      if(!confirm('هاد رح يستبدل كل البيانات الحالية. تكمل؟')) return;
-      data=imported; save(); renderCustomers(); showToast('✅ تم استيراد البيانات');
-    }catch(err){ showToast('⚠️ خطأ بقراءة الملف'); }
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const imported = JSON.parse(e.target.result);
+      if (!imported.customers) { showToast('⚠️ ملف غير صحيح'); return; }
+      if (!confirm('هاد رح يستبدل كل البيانات الحالية. تكمل؟')) return;
+      data = imported;
+      save();
+      renderCustomers();
+      showToast('✅ تم استيراد البيانات');
+    } catch(err) {
+      showToast('⚠️ خطأ بقراءة الملف');
+    }
   };
-  reader.readAsText(file); event.target.value='';
+  reader.readAsText(file);
+  event.target.value = '';
 }
 
-// ═══ MODALS ═══
-function openModal(id){ document.getElementById(id).classList.add('active'); }
-function closeModal(id){ document.getElementById(id).classList.remove('active'); }
-document.querySelectorAll('.modal-overlay').forEach(overlay=>{
-  overlay.addEventListener('click',e=>{ if(e.target===overlay) overlay.classList.remove('active'); });
+function openModal(id) { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('active');
+  });
 });
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+  }
 });
 
 // ═══ BOOT ═══
