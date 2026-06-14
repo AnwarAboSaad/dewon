@@ -1,3 +1,104 @@
+
+Claude finished the response
+
+<!DOCTYPE html> <html lang="ar" dir="rtl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <link rel="apple-touch-icon" href="logo.png"> <title>Mazen Ghanoum - إدارة الديون</title> <link href="https://fonts.goo
+
+pasted
+
+
+<!DOCTYPE html> <html lang="ar" dir="rtl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-status-bar-style" content="bl
+
+pasted
+
+في واحد من هدول عاملينلو طريقة قفل جميلة بدنا للتاني نعمل نفس الشي
+
+10:53
+بفهم، بدك تضيف نظام القفل (Lock Screen) من التطبيق الثاني (متجري) لتطبيق إدارة الديون (Mazen Ghanoum).
+
+خليني أضيف النظام كاملاً:
+
+الآن خليني أشوف الكود وأضيف نظام القفل:
+
+
+Ran 2 commands, read a file
+Ran 2 commands, read a file
+خلصنا! إليك شرح مختصر لكيفية عمل النظام:
+
+منطق القفل:
+
+جهاز جديد → يطلب كود التفعيل + كلمة المرور (تفعيل لمرة واحدة)
+جهاز مفعّل → يطلب كلمة المرور فقط عند كل دخول
+انتهى الترخيص → يطلب كود تفعيل جديد
+تحذير قبل 30 يوم من الانتهاء
+لتغيير كلمة المرور أو الكود:
+
+الهاش الحالي c9098380... يقابل نص معين. تحتاج تولّد هاش SHA-256 جديد لكلمة المرورك الخاصة وتحطه بدل القيم الموجودة في:
+
+js
+const PASS_HASH  = 'هاش كلمة المرور';
+const ACTIV_HASH = 'هاش كود التفعيل';
+تقدر تولّد الهاش من أي موقع SHA-256 أونلاين، أو أقدر أساعدك بذلك.
+
+
+Debt app with lock
+Code · HTML 
+خلينا نحذف كلمة السر ونخلي كود التفعيل
+
+11:12
+
+Ran 2 commands
+Ran 2 commands
+Claude's response was interrupted.
+اكتب حسان حميدي  بصفحة تسجيل الدخول
+خلينا نحذف كلمة السر ونخلي كود التفعيل
+
+11:13
+
+Viewed 2 files, ran a command
+Viewed 2 files, ran a command
+الحين بعدّل ٣ أشياء: الاسم بصفحة القفل، وحذف كلمة المرور، وتبقى كود التفعيل فقط:
+
+
+Ran 4 commands, edited 2 files, read a file
+Ran 4 commands, edited 2 files, read a file
+تم! هاد ما تغيّر:
+
+الاسم على شاشة القفل أصبح حسان حميدي
+حُذفت كلمة المرور بالكامل
+كود التفعيل فقط هو اللي بيفتح التطبيق
+بعد التفعيل الأول، التطبيق بيفتح مباشرة بدون أي سؤال
+
+Debt app with lock
+Code · HTML 
+خلي اللوغو كمان ليش شلتو
+
+11:17
+ما شلته أنا، اللوغو موجود بس بيحاول يحمّل ملف logo.png من نفس المجلد — إذا الملف مش موجود بيختفي. خليني أرجعله الـ fallback يظهر دايماً:
+
+
+View lock screen logo area
+View lock screen logo area
+اللوغو موجود بالـ lock screen السطر 297 — الـ 🏍️ هو اللوغو. المشكلة إنك شايفه emoji بس مو صورة. قصدك تحط صورة اللوغو logo.png بشاشة القفل مثل ما هو بالـ header؟
+
+
+Ran 2 commands, edited a file, read a file
+Ran 2 commands, edited a file, read a file
+تم! هلق شاشة القفل بتحاول تحمّل logo.png — إذا الملف موجود بنفس المجلد بيظهر الصورة، وإذا ما كان موجود بيظهر الـ 🏍️ تلقائياً كـ fallback.
+
+
+Debt app with lock
+Code · HTML 
+
+Claude Fable 5 is currently unavailable.
+Learn more(opens in new tab)
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+
+
+Debt app with lock · HTML
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -8,7 +109,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   :root {
     --bg: #0f0f13;
     --surface: #1a1a22;
@@ -22,18 +123,18 @@
     --text2: #9999b0;
     --radius: 14px;
   }
-
+ 
   html, body {
     height: 100%;
     overflow: hidden;
   }
-
+ 
   body {
     font-family: 'Tajawal', sans-serif;
     background: var(--bg);
     color: var(--text);
   }
-
+ 
   /* ===== LOCK SCREEN ===== */
   #lock-screen {
     position: fixed; inset: 0; z-index: 200;
@@ -84,7 +185,7 @@
   }
   .lock-btn:hover { opacity: .9; }
   .lock-btn:active { transform: scale(.98); }
-
+ 
   /* ===== EXPIRY WARNING ===== */
   .expiry-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,.75);
@@ -100,7 +201,7 @@
   .expiry-title { font-size: 18px; font-weight: 900; color: var(--red); margin-bottom: 10px; }
   .expiry-days { font-size: 42px; font-weight: 900; color: var(--accent); margin: 8px 0; }
   .expiry-text { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
-
+ 
   /* ===== MAIN APP ===== */
   header {
     background: var(--surface);
@@ -112,7 +213,7 @@
     height: 68px;
     flex-shrink: 0;
   }
-
+ 
   main {
     height: calc(100vh - 68px);
     overflow-y: auto;
@@ -121,7 +222,7 @@
     margin: 0 auto;
     width: 100%;
   }
-
+ 
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon {
     width: 40px; height: 40px;
@@ -132,7 +233,7 @@
   }
   .logo-text { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.2; }
   .logo-sub { font-size: 11px; color: var(--text2); font-weight: 400; }
-
+ 
   .btn {
     border: none; border-radius: 10px; padding: 10px 18px;
     font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 700;
@@ -154,7 +255,7 @@
   .btn-icon:hover { background: var(--surface2); color: var(--text); }
   .btn-icon.del:hover { color: var(--red); }
   .btn-icon.edit:hover { color: var(--accent); }
-
+ 
   .customers-table {
     background: var(--surface);
     border-radius: var(--radius);
@@ -180,11 +281,11 @@
   .debt-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 700; }
   .debt-positive { background: rgba(239,68,68,0.15); color: #f87171; }
   .debt-zero { background: rgba(34,197,94,0.15); color: var(--green); }
-
+ 
   .empty-state { text-align: center; padding: 60px 20px; color: var(--text2); }
   .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
   .empty-state p { font-size: 15px; }
-
+ 
   #page-customer { display: none; }
   .back-btn {
     display: inline-flex; align-items: center; gap: 8px;
@@ -197,17 +298,17 @@
     transition: all 0.2s;
   }
   .back-btn:hover { color: var(--accent); border-color: var(--accent); background: rgba(249,115,22,0.07); }
-
+ 
   .customer-header {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 16px 20px; margin-bottom: 12px;
   }
   .customer-header h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
   .customer-header .phone { color: var(--text2); font-size: 14px; display: flex; align-items: center; gap: 6px; }
-
+ 
   .action-buttons { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
   .action-buttons .btn { justify-content: center; padding: 12px 10px; font-size: 13px; }
-
+ 
   .trans-table {
     background: var(--surface); border-radius: var(--radius);
     border: 1px solid var(--border); overflow: hidden; margin-bottom: 12px;
@@ -240,7 +341,7 @@
   .type-debt { background: rgba(239,68,68,0.15); color: #f87171; }
   .type-payment { background: rgba(34,197,94,0.15); color: var(--green); }
   .trans-actions { display: flex; gap: 2px; }
-
+ 
   .total-bar {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 16px 20px;
@@ -250,7 +351,7 @@
   .total-amount { font-size: 22px; font-weight: 900; }
   .total-positive { color: #f87171; }
   .total-zero { color: var(--green); }
-
+ 
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.7);
     z-index: 200; display: flex; align-items: flex-end; justify-content: center;
@@ -278,7 +379,7 @@
   .form-group input:focus { border-color: var(--accent); }
   .modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
   .modal-buttons .btn { justify-content: center; padding: 13px; }
-
+ 
   .toast {
     position: fixed; bottom: 30px; left: 50%;
     transform: translateX(-50%) translateY(20px);
@@ -291,15 +392,19 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- ===== LOCK SCREEN ===== -->
 <div id="lock-screen">
-  <div class="lock-logo">🏍️</div>
+  <div class="lock-logo" style="padding:0;overflow:hidden;background:none;box-shadow:none;">
+    <img src="logo.png" style="width:88px;height:88px;border-radius:22px;object-fit:cover;box-shadow:0 8px 32px rgba(249,115,22,.3);"
+      onerror="this.style.display='none';document.getElementById('lock-logo-fallback').style.display='flex'">
+    <div id="lock-logo-fallback" style="display:none;width:88px;height:88px;border-radius:22px;background:linear-gradient(135deg,var(--accent),var(--accent2));align-items:center;justify-content:center;font-size:44px;box-shadow:0 8px 32px rgba(249,115,22,.3);">🏍️</div>
+  </div>
   <div class="lock-title">حسان حميدي</div>
   <div class="lock-sub" id="lock-sub">أدخل كود التفعيل للدخول</div>
   <div class="lock-box" id="lock-box"></div>
 </div>
-
+ 
 <header>
   <div class="logo">
     <img src="logo.png" style="width:40px;height:40px;border-radius:10px;object-fit:cover;" onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
@@ -317,7 +422,7 @@
     <button class="btn btn-primary" id="btn-add-customer" onclick="openAddCustomer()">+ زبون</button>
   </div>
 </header>
-
+ 
 <main>
   <div id="page-customers">
     <div class="customers-table">
@@ -330,7 +435,7 @@
       <div id="customers-list"></div>
     </div>
   </div>
-
+ 
   <div id="page-customer">
     <button class="back-btn" onclick="goBack()">← رجوع</button>
     <div class="customer-header" style="display:flex;justify-content:space-between;align-items:center">
@@ -360,7 +465,7 @@
     </div>
   </div>
 </main>
-
+ 
 <!-- Modal إضافة زبون -->
 <div class="modal-overlay" id="modal-customer">
   <div class="modal">
@@ -380,7 +485,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- Modal إضافة دين -->
 <div class="modal-overlay" id="modal-debt">
   <div class="modal">
@@ -404,7 +509,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- Modal إضافة دفعة -->
 <div class="modal-overlay" id="modal-payment">
   <div class="modal">
@@ -424,7 +529,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- Modal تعديل -->
 <div class="modal-overlay" id="modal-edit">
   <div class="modal">
@@ -448,15 +553,15 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <script>
 // ═══ LOCK SYSTEM ═══
 const ACTIV_HASH  = 'c9098380383253439c21544ae611a4c782a0fff6da9a619abd513c5a2de40608';
 const EXPIRY_DAYS = 365;
 const WARN_DAYS   = 30;
-
+ 
 async function sha256(msg) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
@@ -472,7 +577,7 @@ function daysLeft() {
   if (!a) return -1;
   return EXPIRY_DAYS - Math.floor((Date.now() - a.date) / (1000 * 60 * 60 * 24));
 }
-
+ 
 function renderLockActivate(msg) {
   document.getElementById('lock-sub').textContent = msg || 'أدخل كود التفعيل للدخول';
   document.getElementById('lock-box').innerHTML = `
@@ -484,7 +589,7 @@ function renderLockActivate(msg) {
   `;
   setTimeout(() => { const el = document.getElementById('lock-acode'); if(el) el.focus(); }, 200);
 }
-
+ 
 async function doActivate() {
   const code = (document.getElementById('lock-acode') || {}).value || '';
   const err  = document.getElementById('lock-err');
@@ -499,13 +604,13 @@ async function doActivate() {
     document.getElementById('lock-acode').value = '';
   }
 }
-
+ 
 function unlockApp() {
   document.getElementById('lock-screen').classList.add('hidden');
   const left = daysLeft();
   if (left > 0 && left <= WARN_DAYS) setTimeout(() => showExpiryWarning(left), 800);
 }
-
+ 
 function showExpiryWarning(days) {
   const div = document.createElement('div');
   div.className = 'expiry-overlay';
@@ -519,7 +624,7 @@ function showExpiryWarning(days) {
     </div>`;
   document.body.appendChild(div);
 }
-
+ 
 function initLock() {
   const left = daysLeft();
   if (left < 0) {
@@ -533,13 +638,13 @@ function initLock() {
     if (left <= WARN_DAYS) setTimeout(() => showExpiryWarning(left), 800);
   }
 }
-
+ 
 // ═══ APP DATA ═══
 let data = JSON.parse(localStorage.getItem('mg_debt_app') || '{"customers":[]}');
 let currentCustomerId = null;
 let editingTransId = null;
 let editingCustomerId = null;
-
+ 
 function save() { localStorage.setItem('mg_debt_app', JSON.stringify(data)); }
 function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
 function today() { return new Date().toISOString().split('T')[0]; }
@@ -554,13 +659,13 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
 }
-
+ 
 function getTotal(customerId) {
   const c = data.customers.find(x => x.id === customerId);
   if (!c) return 0;
   return (c.transactions || []).reduce((sum, t) => t.type === 'debt' ? sum + t.amount : sum - t.amount, 0);
 }
-
+ 
 function renderCustomers() {
   const list = document.getElementById('customers-list');
   if (!data.customers.length) {
@@ -582,7 +687,7 @@ function renderCustomers() {
       </div>`;
   }).join('');
 }
-
+ 
 function openAddCustomer() {
   editingCustomerId = null;
   document.getElementById('modal-customer-title').textContent = 'إضافة زبون';
@@ -591,7 +696,7 @@ function openAddCustomer() {
   openModal('modal-customer');
   setTimeout(() => document.getElementById('input-name').focus(), 350);
 }
-
+ 
 function saveCustomer() {
   const name = document.getElementById('input-name').value.trim();
   const phone = document.getElementById('input-phone').value.trim();
@@ -611,14 +716,14 @@ function saveCustomer() {
   }
   save(); closeModal('modal-customer'); renderCustomers();
 }
-
+ 
 function deleteCustomer(id) {
   if (!confirm('حذف هذا الزبون وكل ديونه؟')) return;
   data.customers = data.customers.filter(c => c.id !== id);
   save(); renderCustomers();
   showToast('🗑️ تم الحذف');
 }
-
+ 
 function openCustomer(id) {
   currentCustomerId = id;
   const c = data.customers.find(x => x.id === id);
@@ -629,7 +734,7 @@ function openCustomer(id) {
   document.getElementById('btn-add-customer').style.display = 'none';
   renderTransactions();
 }
-
+ 
 function goBack() {
   currentCustomerId = null;
   document.getElementById('page-customer').style.display = 'none';
@@ -637,7 +742,7 @@ function goBack() {
   document.getElementById('btn-add-customer').style.display = 'flex';
   renderCustomers();
 }
-
+ 
 function renderTransactions() {
   const c = data.customers.find(x => x.id === currentCustomerId);
   const list = document.getElementById('trans-list');
@@ -675,7 +780,7 @@ function renderTransactions() {
   el.textContent = `${total}`;
   el.className = 'total-amount ' + (total > 0 ? 'total-positive' : 'total-zero');
 }
-
+ 
 function openAddDebt() {
   document.getElementById('input-debt-invoice').value = '';
   document.getElementById('input-debt').value = '';
@@ -683,7 +788,7 @@ function openAddDebt() {
   openModal('modal-debt');
   setTimeout(() => document.getElementById('input-debt-invoice').focus(), 350);
 }
-
+ 
 function saveDebt() {
   const invoice = document.getElementById('input-debt-invoice').value.trim();
   const amount = parseFloat(document.getElementById('input-debt').value);
@@ -695,14 +800,14 @@ function saveDebt() {
   save(); closeModal('modal-debt'); renderTransactions();
   showToast('✅ تمت إضافة الدين');
 }
-
+ 
 function openAddPayment() {
   document.getElementById('input-payment').value = '';
   document.getElementById('input-payment-date').value = today();
   openModal('modal-payment');
   setTimeout(() => document.getElementById('input-payment').focus(), 350);
 }
-
+ 
 function savePayment() {
   const amount = parseFloat(document.getElementById('input-payment').value);
   const date = document.getElementById('input-payment-date').value;
@@ -712,7 +817,7 @@ function savePayment() {
   save(); closeModal('modal-payment'); renderTransactions();
   showToast('✅ تمت إضافة الدفعة');
 }
-
+ 
 function openEditTrans(id) {
   const c = data.customers.find(x => x.id === currentCustomerId);
   const t = c.transactions.find(x => x.id === id);
@@ -729,7 +834,7 @@ function openEditTrans(id) {
   document.getElementById('input-edit-date').value = t.date;
   openModal('modal-edit');
 }
-
+ 
 function saveEdit() {
   const invoice = document.getElementById('input-edit-invoice').value.trim();
   const amount = parseFloat(document.getElementById('input-edit-amount').value);
@@ -744,7 +849,7 @@ function saveEdit() {
   save(); closeModal('modal-edit'); renderTransactions();
   showToast('✅ تم التعديل');
 }
-
+ 
 function deleteTrans(id) {
   if (!confirm('حذف هذه الحركة؟')) return;
   const c = data.customers.find(x => x.id === currentCustomerId);
@@ -752,7 +857,7 @@ function deleteTrans(id) {
   save(); renderTransactions();
   showToast('🗑️ تم الحذف');
 }
-
+ 
 function openEditCustomer() {
   const c = data.customers.find(x => x.id === currentCustomerId);
   editingCustomerId = currentCustomerId;
@@ -762,7 +867,7 @@ function openEditCustomer() {
   openModal('modal-customer');
   setTimeout(() => document.getElementById('input-name').focus(), 350);
 }
-
+ 
 function sendWhatsApp() {
   const c = data.customers.find(x => x.id === currentCustomerId);
   const txs = c.transactions || [];
@@ -788,7 +893,7 @@ function sendWhatsApp() {
   const phone = c.phone.replace(/\D/g, '');
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
+ 
 function exportData() {
   const json = JSON.stringify(data, null, 2);
   const blob = new Blob([json], { type: 'application/json' });
@@ -800,7 +905,7 @@ function exportData() {
   URL.revokeObjectURL(url);
   showToast('✅ تم حفظ النسخة الاحتياطية');
 }
-
+ 
 function importData(event) {
   const file = event.target.files[0];
   if (!file) return;
@@ -821,25 +926,26 @@ function importData(event) {
   reader.readAsText(file);
   event.target.value = '';
 }
-
+ 
 function openModal(id) { document.getElementById(id).classList.add('active'); }
 function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-
+ 
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => {
     if (e.target === overlay) overlay.classList.remove('active');
   });
 });
-
+ 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
   }
 });
-
+ 
 // ═══ BOOT ═══
 initLock();
 renderCustomers();
 </script>
 </body>
 </html>
+ 
